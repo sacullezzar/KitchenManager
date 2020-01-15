@@ -1,4 +1,6 @@
 import { Component } from 'react'
+import NavMenu from '../components/NavMenu'
+import AreaManager from '../components/AreaManager'
 import fetch from 'isomorphic-unfetch'
 
 export default class kitchenSetup extends Component {
@@ -10,17 +12,13 @@ export default class kitchenSetup extends Component {
     }
   }
 
-  getInitialProps = async () => {
-    const res = await fetch('https://api.tvmaze.com/search/shows?q=batman')
-  }
-
-  handleChange = evt => {
+  areaNameChange = evt => {
     this.setState({
       [evt.target.name]: evt.target.value
     })
   }
 
-  handleSubmit = evt => {
+  areaNameSubmit = evt => {
     evt.preventDefault()
     fetch('/api/addArea', {
         method: 'POST',
@@ -38,16 +36,14 @@ export default class kitchenSetup extends Component {
   }
   render() {
     return(
-      <form onSubmit={this.handleSubmit}>
-        <input
-          name='areaName'
-          type='text'
-          id='areaName'
-          value={this.state.areaName}
-          onChange={this.handleChange}>
-        </input>
-        <input type='submit'/>
-      </form>
+      <div>
+        <NavMenu/>
+        <AreaManager 
+          areaName={this.state.areaName}
+          areaNameChange={this.areaNameChange}
+          areaNameSubmit={this.areaNameSubmit}
+          areas={this.state.areas}/>
+      </div>
     )
   }
 }

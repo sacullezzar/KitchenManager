@@ -1,20 +1,23 @@
-import Link from 'next/link'
+import NavMenu from '../components/NavMenu'
 
-function Index() {
+const Index = (props) => {
   return (
-    <ul>
-      <li>
-        <Link href="/">
-          <a>Index</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/kitchenSetup">
-          <a>Kitchen Setup</a>
-        </Link>
-      </li>
-    </ul>
+    <div>
+      <h1>Kitchen Manager</h1>
+      <NavMenu />
+    </div>
   )
+}
+
+Index.getInitialProps = async () => {
+  // const res = await fetch('https://api.tvmaze.com/search/shows?q=batman')
+  // const data = await res.json()
+  // return {
+  //   areas: data.map(entry => entry.score)
+  // }
+  return {
+    data: null
+  }
 }
 
 export default Index

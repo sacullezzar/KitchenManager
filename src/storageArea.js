@@ -5,7 +5,7 @@ storageArea.add = (areaName) => {
 }
 
 storageArea.getOne = (id) => {
-  
+
 }
 
 storageArea.getAll = () => {
